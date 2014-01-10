@@ -53,6 +53,7 @@ class Blender  # define a class recipe for object Blender
       @status = "on"
     else
       @status = "off"
+      puts "Your blender is #{blender1.status}."
     end
   end  
 
@@ -65,19 +66,26 @@ end
 
 blender1 = Blender.new
 puts "Your blender is #{blender1.status}. Enter 'on' to turn it on."
-res = gets.chomp
-until res == 'off'
-  if res == 'on'
+res = gets.chomp.downcase
+    if res == 'on'
       puts blender1.blend(smoothie_ingredients)
       puts "To blend again, enter 'b'.  To turn off, enter 'off'."
-      res = gets.chomp
-    elsif res == 'b'
-      puts blender1.blend(smoothie_ingredients)
-      puts "To blend again, enter 'b'.  To turn off, enter 'off'."
-      res = gets.chomp
+      res = gets.chomp.downcase
+      until res == 'off'
+        if res == 'b'
+          puts blender1.blend(smoothie_ingredients)
+          puts "To blend again, enter 'b'.  To turn off, enter 'off'."
+          res = gets.chomp.downcase
+        else 
+          puts "Your blender is #{blender1.status}. Enter 'on' to turn it on."
+          res = gets.chomp.downcase
+        end
+      end
+    elsif res == 'off'
+      puts "Your blender is already #{blender1.status}." 
     else
       puts "Your blender is #{blender1.status}. Enter 'on' to turn it on."
-      res = gets.chomp
-  end
-puts "Your blender is #{blender1.status}."
-end
+      res = gets.chomp.downcase
+    end
+
+# puts "Your blender is #{blender1.status}."
