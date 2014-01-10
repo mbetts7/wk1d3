@@ -58,7 +58,7 @@ class Blender  # define a class recipe for object Blender
 
   def blend(smoothie_ingredients)
       ingredients_blend = []
-      ingredients_blend = smoothie_ingredients.keys.shuffle.join.delete(" ")
+      ingredients_blend = smoothie_ingredients.keys.sample(3).shuffle.join.delete(" ")  #.sample(3) could limit to 3 ingredients
       smoothie_ingredients = ingredients_blend
   end
 end
@@ -76,10 +76,8 @@ until res == 'off'
       puts "To blend again, enter 'b'.  To turn off, enter 'off'."
       res = gets.chomp
     else
+      puts "Your blender is #{blender1.status}. Enter 'on' to turn it on."
+      res = gets.chomp
   end
-  puts "Your blender is #{blender1.status}."
+puts "Your blender is #{blender1.status}."
 end
-
-
-
-
